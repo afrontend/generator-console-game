@@ -4,6 +4,12 @@ const chalk = require("chalk");
 const yosay = require("yosay");
 
 module.exports = class extends Generator {
+  constructor(args, opts) {
+    super(args, opts);
+
+    this.option('babel'); // This method adds support for a `--babel` flag
+  }
+
   prompting() {
     // Have Yeoman greet the user.
     this.log(
@@ -32,7 +38,7 @@ module.exports = class extends Generator {
     );
   }
 
-  install() {
-    this.installDependencies();
-  }
+  // install() {
+    // this.installDependencies();
+  // }
 };

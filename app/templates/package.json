@@ -1,23 +1,27 @@
 {
-  "name": "generator-console-game",
-  "version": "0.0.1",
-  "description": "",
-  "homepage": "",
+  "name": "fp-space",
+  "version": "0.0.0",
+  "description": "library for fp-space-game",
+  "homepage": "https://github.com/afrontend/fp-space",
   "author": {
     "name": "Bob Hwang",
     "email": "frontend.wordpress@gmail.com",
     "url": "https://agvim.wordpress.com"
   },
   "files": [
-    "app"
+    "lib",
+    "src"
   ],
-  "main": "generators/index.js",
+  "main": "lib/index.js",
+  "bin": {
+    "fp-block": "./src/example.js"
+  },
   "keywords": [
-    "yeoman-generator"
+    "javascript",
+    "space",
+    "game"
   ],
   "devDependencies": {
-    "yeoman-test": "^1.7.0",
-    "yeoman-assert": "^3.1.0",
     "coveralls": "^3.0.2",
     "eslint": "^5.9.0",
     "prettier": "^1.15.2",
@@ -29,15 +33,7 @@
     "jest": "^23.5.0"
   },
   "engines": {
-    "npm": ">= 4.0.0"
-  },
-  "dependencies": {
-    "yeoman-generator": "^2.0.1",
-    "chalk": "^2.1.0",
-    "yosay": "^2.0.1"
-  },
-  "jest": {
-    "testEnvironment": "node"
+    "node": ">= 8.0.0"
   },
   "lint-staged": {
     "*.js": [
@@ -67,8 +63,19 @@
   },
   "scripts": {
     "pretest": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "start": "node ./src/example.js"
   },
-  "repository": "https://github.com/afrontend/generator-console-game.git",
-  "license": "MIT"
+  "repository": "https://github.com/afrontend/fp-space.git",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "clear": "^0.1.0",
+    "commander": "^2.19.0",
+    "fp-panel": "0.0.5",
+    "keypress": "^0.2.1",
+    "lodash": "^4.17.11"
+  }
 }
