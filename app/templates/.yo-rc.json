@@ -1,0 +1,9 @@
+{
+  "generator-console-game": {
+    "promptValues": {
+      "authorName": "",
+      "authorEmail": "",
+      "authorUrl": ""
+    }
+  }
+}

@@ -12,9 +12,9 @@ module.exports = class extends Generator {
 
   prompting() {
     // Have Yeoman greet the user.
-    this.log(
-      yosay(`Welcome ${chalk.red("generator-console-game")} generator!`)
-    );
+      this.log(
+        yosay(`Welcome ${chalk.red("generator-console-game")} generator!`)
+      );
 
     const prompts = [
       {
@@ -32,13 +32,42 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.fs.copy(
-      this.templatePath("dummyfile.txt"),
-      this.destinationPath("dummyfile.txt")
-    );
+    const fileList = [
+      "src",
+      "lib",
+      ".editorconfig",
+      ".eslintignore",
+      ".gitattributes",
+      ".gitignore",
+      ".travis.yml",
+      ".yo-rc.json",
+      "README.md",
+      "package.json",
+    ];
+
+    fileList.forEach(file => {
+      this.fs.copy(
+        this.templatePath(file),
+        this.destinationPath(file)
+      );
+    })
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // install() {
-    // this.installDependencies();
+  // this.installDependencies();
   // }
 };
