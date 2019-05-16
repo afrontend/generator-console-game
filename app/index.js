@@ -7,14 +7,13 @@ module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
 
-    this.option('babel'); // This method adds support for a `--babel` flag
+    this.option("babel"); // This method adds support for a `--babel` flag
   }
 
   prompting() {
-    // Have Yeoman greet the user.
-      this.log(
-        yosay(`Welcome ${chalk.red("generator-console-game")} generator!`)
-      );
+    this.log(
+      yosay(`Welcome ${chalk.red("generator-console-game")} generator!`)
+    );
 
     const prompts = [
       {
@@ -42,32 +41,15 @@ module.exports = class extends Generator {
       ".travis.yml",
       ".yo-rc.json",
       "README.md",
-      "package.json",
+      "package.json"
     ];
 
     fileList.forEach(file => {
-      this.fs.copy(
-        this.templatePath(file),
-        this.destinationPath(file)
-      );
-    })
+      this.fs.copy(this.templatePath(file), this.destinationPath(file));
+    });
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // install() {
-  // this.installDependencies();
-  // }
+  install() {
+    this.installDependencies();
+  }
 };
