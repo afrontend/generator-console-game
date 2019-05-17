@@ -17,10 +17,16 @@ module.exports = class extends Generator {
 
     const prompts = [
       {
-        type: "confirm",
-        name: "someAnswer",
-        message: "Would you like to enable this option?",
-        default: true
+        type: "input",
+        name: "name",
+        message: "Your project name",
+        default: this.appname // Default to current folder name
+      },
+      {
+        type: "input",
+        name: "id",
+        message: "Your github id",
+        default: ""
       }
     ];
 
@@ -44,8 +50,8 @@ module.exports = class extends Generator {
       "package.json"
     ];
 
-    fileList.forEach(file => {
-      this.fs.copy(this.templatePath(file), this.destinationPath(file));
+    fileList.forEach(fileName => {
+      this.fs.copyTpl(this.templatePath(fileName), this.destinationPath(fileName), this.props);
     });
   }
 

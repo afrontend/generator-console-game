@@ -1,8 +1,8 @@
 {
-  "name": "fp-space",
+  "name": "<%= name %>",
   "version": "0.0.0",
-  "description": "library for fp-space-game",
-  "homepage": "https://github.com/afrontend/fp-space",
+  "description": "library for <%= name %>-game",
+  "homepage": "https://github.com/<%= id %>/<%= name %>",
   "author": {
     "name": "Bob Hwang",
     "email": "frontend.wordpress@gmail.com",
@@ -14,11 +14,10 @@
   ],
   "main": "lib/index.js",
   "bin": {
-    "fp-block": "./src/example.js"
+    "<%= name %>": "./src/example.js"
   },
   "keywords": [
     "javascript",
-    "space",
     "game"
   ],
   "devDependencies": {
@@ -66,7 +65,7 @@
     "test": "jest",
     "start": "node ./src/example.js"
   },
-  "repository": "https://github.com/afrontend/fp-space.git",
+  "repository": "https://github.com/<%= id %>/<%= name %>.git",
   "jest": {
     "testEnvironment": "node"
   },
