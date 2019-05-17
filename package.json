@@ -1,8 +1,8 @@
 {
   "name": "generator-console-game",
   "version": "0.0.1",
-  "description": "",
-  "homepage": "",
+  "description": "make a console game with fp-panel",
+  "homepage": "https://github.com/afrontend",
   "author": {
     "name": "Bob Hwang",
     "email": "frontend.wordpress@gmail.com",
