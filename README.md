@@ -25,7 +25,7 @@ yo console-game
 
 ## License
 
-MIT © [Bob Hwang](https://agvim.wordpress.com)
+MIT © [Bob Hwang](https://afrontend.github.io)
 
 
 [npm-image]: https://badge.fury.io/js/generator-console-game.svg
