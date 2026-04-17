@@ -1,4 +1,4 @@
-# generator-console-game [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# generator-console-game [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]
 > make a console game with fp-panel
 
 ## Installation
@@ -32,7 +32,3 @@ MIT © [Bob Hwang](https://afrontend.github.io)
 [npm-url]: https://npmjs.org/package/generator-console-game
 [travis-image]: https://travis-ci.org/afrontend/generator-console-game.svg?branch=master
 [travis-url]: https://travis-ci.org/afrontend/generator-console-game
-[daviddm-image]: https://david-dm.org/afrontend/generator-console-game.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/afrontend/generator-console-game
-[coveralls-image]: https://coveralls.io/repos/afrontend/generator-console-game/badge.svg
-[coveralls-url]: https://coveralls.io/r/afrontend/generator-console-game
