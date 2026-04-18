@@ -33,13 +33,11 @@ echo "▶ Recording autoplay..."
 asciinema rec \
   --command "node $SCRIPT_DIR/autoplay.js" \
   --overwrite \
-  --headless \
-  --title "generator-console-game demo" \
-  --window-size 34x18 \
+  --window-size 36x20 \
   "$CAST_FILE"
 
 echo "▶ Converting to GIF..."
-agg --speed 2.0 --theme monokai "$CAST_FILE" "$GIF_FILE"
+agg --speed 1.5 --theme monokai "$CAST_FILE" "$GIF_FILE"
 
 echo "▶ Uploading to GitHub Releases ($RELEASE_TAG)..."
 if gh release view "$RELEASE_TAG" --repo "$REPO" &>/dev/null; then
