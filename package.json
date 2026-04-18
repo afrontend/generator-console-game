@@ -69,7 +69,7 @@
   "scripts": {
     "pretest": "eslint .",
     "test": "jest",
-    "release": "bash scripts/make-demo.sh"
+    "demo-gif": "bash scripts/make-demo.sh"
   },
   "repository": "https://github.com/afrontend/generator-console-game.git",
   "license": "MIT"
