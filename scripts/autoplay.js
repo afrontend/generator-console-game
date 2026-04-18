@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
+const chalk = require('chalk');
 const game = require('../app/templates/lib/index.js');
 
 const ROWS = 15;
@@ -8,54 +9,84 @@ const COLS = 15;
 const TICK_INTERVAL_MS = 200;
 const MAX_TICKS = 250;
 
-let state = game.init(ROWS, COLS);
-let tickCount = 0;
+// Ticks before the patrol target advances to the next position
+const PATROL_STEPS = 10;
 
-const format = panel =>
-  panel
-    .map(row => row.map(item => (game.isBlankItem(item) ? ' ' : '■')).join(' '))
+// Fire a missile every N ticks (avoids continuous laser look)
+const SHOOT_EVERY = 4;
+
+// Shuttle sweeps left → center → right → center → left
+const PATROL_TARGETS = [2, 5, 9, 12, 9, 5, 2];
+
+const COLOR_MAP = {
+  pink: 'magenta',
+};
+
+function getColorItem(item, char) {
+  const color = COLOR_MAP[item.color] || item.color;
+  if (chalk[color]) {
+    return chalk[color](char);
+  }
+  return chalk.white(char);
+}
+
+const getMark = item =>
+  game.isBlankItem(item) ? '  ' : getColorItem(item, '■ ');
+
+const render = state =>
+  game
+    .join(state)
+    .map(row => row.map(getMark).join(''))
     .join('\n');
 
-const findCenterColumn = panel => {
+function getShuttleCenter(panel) {
   const cols = [];
   panel.forEach(row => {
-    row.forEach((item, colIdx) => {
-      if (!game.isBlankItem(item)) cols.push(colIdx);
+    row.forEach((item, c) => {
+      if (!game.isBlankItem(item)) cols.push(c);
     });
   });
   if (cols.length === 0) return Math.floor(COLS / 2);
   return Math.round(cols.reduce((a, b) => a + b, 0) / cols.length);
-};
+}
 
-const chooseKey = (state, tick) => {
-  const meteoriteCol = findCenterColumn(state.meteoritePanel);
-  const shuttleCol = findCenterColumn(state.shuttlePanel);
-
-  // Fire every other tick
-  if (tick % 2 === 0) return 'up';
-
-  if (shuttleCol < meteoriteCol) return 'right';
-  if (shuttleCol > meteoriteCol) return 'left';
-  return 'up';
-};
-
-const render = state => {
-  process.stdout.write('\x1B[2J\x1B[H');
-  process.stdout.write(format(game.join(state)) + '\n');
-};
-
-render(state);
+let state = game.init(ROWS, COLS);
+let ticks = 0;
+let patrolIdx = 0;
+let patrolStepCount = 0;
 
 const timer = setInterval(() => {
-  tickCount++;
+  const shuttleCenter = getShuttleCenter(state.shuttlePanel);
 
-  if (tickCount >= MAX_TICKS) {
+  patrolStepCount++;
+  if (patrolStepCount >= PATROL_STEPS) {
+    patrolStepCount = 0;
+    patrolIdx = (patrolIdx + 1) % PATROL_TARGETS.length;
+  }
+
+  const targetCol = PATROL_TARGETS[patrolIdx];
+  const diff = targetCol - shuttleCenter;
+
+  let keyName;
+  if (ticks % SHOOT_EVERY === 0) {
+    keyName = 'up';
+  } else if (diff > 0) {
+    keyName = 'right';
+  } else if (diff < 0) {
+    keyName = 'left';
+  } else {
+    keyName = 'up'; // already at target — shoot
+  }
+
+  state = game.key(keyName, state);
+  state = game.tick(state);
+
+  process.stdout.write('\x1B[2J\x1B[H');
+  process.stdout.write(render(state) + '\n');
+
+  ticks++;
+  if (ticks >= MAX_TICKS) {
     clearInterval(timer);
     process.exit(0);
   }
-
-  const key = chooseKey(state, tickCount);
-  state = game.key(key, state);
-  state = game.tick(state);
-  render(state);
 }, TICK_INTERVAL_MS);
