@@ -25,7 +25,11 @@ yo console-game
 You will be prompted for two inputs:
 
 1. **Your project name** — the name of the game project (defaults to the current folder name)
-2. **Your GitHub ID** — used to generate repository URLs in `package.json` and `README.md`
+2. **Your GitHub ID** — used to generate repository URLs in `package.json`:
+   ```json
+   "homepage": "https://github.com/<your-id>/<your-project>",
+   "repository": "https://github.com/<your-id>/<your-project>.git"
+   ```
 
 ## Generated Project Structure
 
