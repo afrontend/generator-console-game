@@ -79,6 +79,15 @@ npm start -- --full
 | `l` | Load saved state |
 | `q` / `Ctrl+C` | Quit |
 
+## Projects using fp-panel
+
+아래 프로젝트는 모두 fp-panel 을 사용하여 개발되었습니다.
+
+- [fp-block](https://github.com/afrontend/fp-block)
+- [fp-tetris](https://github.com/afrontend/fp-tetris)
+- [fp-snake](https://github.com/afrontend/fp-snake)
+- [fp-space](https://github.com/afrontend/fp-space)
+
 ## About fp-panel
 
 The generated game is built on [fp-panel](https://github.com/afrontend/fp-panel) ([npm](https://www.npmjs.com/package/fp-panel)), a 2D grid panel manipulation library designed for building terminal-based games with a functional programming approach.
